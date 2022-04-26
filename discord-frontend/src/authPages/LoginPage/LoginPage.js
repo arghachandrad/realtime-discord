@@ -4,7 +4,7 @@ import { validateLoginForm } from "../../shared/utils/validators"
 import LoginPageFooter from "./LoginPageFooter"
 import LoginPageHeader from "./LoginPageHeader"
 import LoginPageInputs from "./LoginPageInputs"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { login } from "../../store/actions/authActions"
 

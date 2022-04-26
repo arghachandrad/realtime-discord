@@ -1,4 +1,5 @@
 import * as api from "../../api/authApi"
+import { openAlertMessage } from "./alertAction"
 
 export const authActions = {
   SET_USER_DETAILS: "AUTH_SET_USER_DETAILS",
@@ -18,6 +19,7 @@ export const login = (userDetails, history) => {
 
     if (response.error) {
       // show error message in alert
+      dispatch(openAlertMessage(response?.exception?.response?.data))
     } else {
       const { userDetails } = response?.data
       localStorage.setItem("user", JSON.stringify(userDetails))
@@ -35,6 +37,7 @@ export const register = (userDetails, history) => {
 
     if (response.error) {
       // show error message in alert
+      dispatch(openAlertMessage(response?.exception?.response?.data))
     } else {
       const { userDetails } = response?.data
       localStorage.setItem("user", JSON.stringify(userDetails))

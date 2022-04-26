@@ -4,7 +4,7 @@ import AuthBox from "../../shared/components/AuthBox"
 import RegisterPageInputs from "./RegisterPageInputs"
 import RegisterPageFooter from "./RegisterPageFooter"
 import { validateRegisterForm } from "../../shared/utils/validators"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { register } from "../../store/actions/authActions"
 
