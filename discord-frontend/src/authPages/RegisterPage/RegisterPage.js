@@ -4,8 +4,14 @@ import AuthBox from "../../shared/components/AuthBox"
 import RegisterPageInputs from "./RegisterPageInputs"
 import RegisterPageFooter from "./RegisterPageFooter"
 import { validateRegisterForm } from "../../shared/utils/validators"
+import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
+import { register } from "../../store/actions/authActions"
 
 const RegisterPage = () => {
+  const dispatch = useDispatch()
+  const history = useHistory()
+
   const [mail, setMail] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -16,7 +22,15 @@ const RegisterPage = () => {
     setIsFormValid(validateRegisterForm({ mail, username, password }))
   }, [mail, username, password])
 
-  const handleRegister = () => {}
+  const handleRegister = () => {
+    const userDetails = {
+      mail,
+      username,
+      password,
+    }
+
+    dispatch(register(userDetails, history))
+  }
 
   return (
     <AuthBox>
