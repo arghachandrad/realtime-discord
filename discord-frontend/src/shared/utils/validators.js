@@ -13,7 +13,7 @@ export const validateRegisterForm = ({ mail, username, password }) => {
   return isMailValid && isPasswordValid && isUsernameValid
 }
 
-const validateMail = (mail) => {
+export const validateMail = (mail) => {
   return String(mail)
     .toLowerCase()
     .match(
