@@ -1,6 +1,7 @@
 // will add socket io server with our express server
 
 const verifyTokenSocket = require("./middlewares/authSocket")
+const newConnectionHandler = require("./socketHandlers/newConnectionHandler")
 
 // server parameter refers to http server(our express server)
 const registerSocketServer = (server) => {
@@ -19,8 +20,9 @@ const registerSocketServer = (server) => {
   // listen if any client will connect, multiple socket for same user(if app opened in multiple tabs)
   io.on("connection", (socket) => {
     console.log("user connected")
-    console.log(socket.id)
-    console.log(socket.user) // store this user as new connected user
+
+    // storing connected users in a Map with different socketId
+    newConnectionHandler(socket, io)
   })
 }
 
