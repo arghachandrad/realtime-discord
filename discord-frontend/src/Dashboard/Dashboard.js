@@ -26,7 +26,8 @@ const Dashboard = () => {
       dispatch(setUserDetails(JSON.parse(userDetails)))
 
       // if the user has token and authenticate then connect to socket server
-      connectWithSocketServer()
+      // pass userDetails in order to store which user is connected
+      connectWithSocketServer(JSON.parse(userDetails))
     }
   }, [dispatch])
   return (
