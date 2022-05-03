@@ -7,6 +7,7 @@ import Messenger from "./Messenger/Messenger"
 import Sidebar from "./Sidebar/Sidebar"
 import { setUserDetails } from "../store/actions/authActions"
 import { useDispatch } from "react-redux"
+import { connectWithSocketServer } from "../realtimeCommunication/socketConnection"
 
 const Wrapper = styled("div")({
   width: "100%",
@@ -23,8 +24,11 @@ const Dashboard = () => {
       logout()
     } else {
       dispatch(setUserDetails(JSON.parse(userDetails)))
+
+      // if the user has token and authenticate then connect to socket server
+      connectWithSocketServer()
     }
-  }, [])
+  }, [dispatch])
   return (
     <Wrapper>
       <Sidebar />
