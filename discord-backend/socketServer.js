@@ -1,6 +1,7 @@
 // will add socket io server with our express server
 
 const verifyTokenSocket = require("./middlewares/authSocket")
+const disconnectHandler = require("./socketHandlers/disconnectHandler")
 const newConnectionHandler = require("./socketHandlers/newConnectionHandler")
 
 // server parameter refers to http server(our express server)
@@ -23,6 +24,11 @@ const registerSocketServer = (server) => {
 
     // storing connected users in a Map with different socketId
     newConnectionHandler(socket, io)
+
+    // multiple instance of socket for multiple user(getting who gets disconncted)
+    socket.on("disconnect", () => {
+      disconnectHandler(socket)
+    })
   })
 }
 
