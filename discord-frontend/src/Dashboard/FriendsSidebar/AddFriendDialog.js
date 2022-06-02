@@ -10,17 +10,24 @@ import React, { useEffect, useState } from "react"
 import { validateMail } from "../../shared/utils/validators"
 import InputWithLabel from "../../shared/components/InputWithLabel"
 import CustomPrimaryButton from "../../shared/components/CustomPrimaryButton"
+import { useDispatch } from "react-redux"
+import { sendFriendInvitation } from "../../store/actions/friendsActions"
 
-function AddFriendDialog({
-  isDialogOpen,
-  closeDialogHandler,
-  sendFriendInvitation = () => {},
-}) {
+function AddFriendDialog({ isDialogOpen, closeDialogHandler }) {
+  const dispatch = useDispatch()
   const [mail, setMail] = useState("")
   const [isFormValid, setIsFormValid] = useState(false)
 
   const handleSendInvitation = () => {
     // send frd request to server
+    dispatch(
+      sendFriendInvitation(
+        {
+          mail,
+        },
+        closeDialogHandler
+      )
+    )
   }
 
   const handleCloseDialog = () => {
@@ -40,9 +47,7 @@ function AddFriendDialog({
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <Typography>
-              Enter email address of friend which you would like to invite
-            </Typography>
+            Enter email address of friend which you would like to invite
           </DialogContentText>
           <InputWithLabel
             label="Mail"
