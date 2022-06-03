@@ -23,9 +23,9 @@ function AddFriendDialog({ isDialogOpen, closeDialogHandler }) {
     dispatch(
       sendFriendInvitation(
         {
-          mail,
+          targetMailAddress: mail,
         },
-        closeDialogHandler
+        handleCloseDialog
       )
     )
   }
