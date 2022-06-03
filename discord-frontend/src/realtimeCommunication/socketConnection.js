@@ -1,4 +1,6 @@
 import io from "socket.io-client"
+import { setPendingFriendsInvitations } from "../store/actions/friendsActions"
+import store from "../store/store"
 
 let socket = null
 
@@ -14,5 +16,11 @@ export const connectWithSocketServer = (userDetails) => {
   socket.on("connect", () => {
     console.log("Successfully connected with socketio server")
     console.log(socket.id)
+  })
+
+  // incoming frd invitation
+  socket.on("friends-invitations", (data) => {
+    const { pendingFriendsInvitations } = data
+    store.dispatch(setPendingFriendsInvitations(pendingFriendsInvitations))
   })
 }
