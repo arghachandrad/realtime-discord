@@ -3,6 +3,7 @@
 const verifyTokenSocket = require("./middlewares/authSocket")
 const disconnectHandler = require("./socketHandlers/disconnectHandler")
 const newConnectionHandler = require("./socketHandlers/newConnectionHandler")
+const serverStore = require("./serverStore")
 
 // server parameter refers to http server(our express server)
 const registerSocketServer = (server) => {
@@ -12,6 +13,9 @@ const registerSocketServer = (server) => {
       methods: ["GET", "POST"],
     },
   })
+
+  // setting scoketInstance for global access
+  serverStore.setSocketServerInstance(io)
 
   // using middle to fetch which user is responsible for new socket connection
   io.use((socket, next) => {
