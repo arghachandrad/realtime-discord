@@ -1,21 +1,15 @@
 import React from "react"
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom"
+import { BrowserRouter as Router } from "react-router-dom"
 import "./App.css"
-import LoginPage from "./authPages/LoginPage/LoginPage"
-import RegisterPage from "./authPages/RegisterPage/RegisterPage"
-import Dashboard from "./Dashboard/Dashboard"
+import routes, { renderRoutes } from "./routes"
 import AlertNotification from "./shared/components/AlertNotification"
 
 function App() {
   return (
     <>
       <Router>
-        <Switch>
+        {renderRoutes(routes)}
+        {/* <Switch>
           <Route exact path="/login">
             <LoginPage />
           </Route>
@@ -28,7 +22,7 @@ function App() {
           <Route path="/">
             <Redirect to="/dashboard" />
           </Route>
-        </Switch>
+        </Switch> */}
       </Router>
       <AlertNotification />
     </>
